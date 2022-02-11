@@ -21,7 +21,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <ul>
-        {todos.map( todos => <li><p> {todos.title} </p></li>)}
+        {/* {todos.map( todos => <li><p> {todos.title} </p></li>)} */}
       </ul>
      </>
      
