@@ -5,14 +5,16 @@ import styles from '../styles/Home.module.css'
 
 export default function Home() {
   const [todos, setTodos] = useState([])
+
   useEffect(() => {
     const data = fetch('https://jsonplaceholder.typicode.com/todos?_limit=4')
     .then(r => r.json())
     .then(data => {
       setTodos(data)
     })
-  }, [])
+  }, [todos])
 
+ 
   return (
     <>
       <Head>
@@ -20,9 +22,13 @@ export default function Home() {
         <meta name="description" content="la super todo de Caroline" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <Body>
+      {console.log('todos >> ', todos)}
       <ul>
-        {/* {todos.map( todos => <li><p> {todos.title} </p></li>)} */}
+      hello
+        {todos.map((todos) => <li><p>{todos.title}</p></li>)}
       </ul>
+      </Body>
      </>
      
   )
