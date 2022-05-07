@@ -1,0 +1,626 @@
+@import "import/reset.scss";
+@import "import/mixins.scss";
+@import "import/variables.scss";
+
+/************** Polices personnalisées ***************/
+
+@font-face {
+    font-family: 'sansationregular';
+    src: url('polices/sansation_regular-webfont.eot');
+    src: url('polices/sansation_regular-webfont.eot?#iefix') format('embedded-opentype'),
+        url('polices/sansation_regular-webfont.woff2') format('woff2'),
+        url('polices/sansation_regular-webfont.woff') format('woff'),
+        url('polices/sansation_regular-webfont.ttf') format('truetype'),
+        url('polices/sansation_regular-webfont.svg#sansationregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'barber_street_personaluseonRg';
+    src: url('polices/barber_street_personaluseonly-webfont.eot');
+    src: url('polices/barber_street_personaluseonly-webfont.eot?#iefix') format('embedded-opentype'),
+        url('polices/barber_street_personaluseonly-webfont.woff2') format('woff2'),
+        url('polices/barber_street_personaluseonly-webfont.woff') format('woff'),
+        url('polices/barber_street_personaluseonly-webfont.ttf') format('truetype'),
+        url('polices/barber_street_personaluseonly-webfont.svg#barber_street_personaluseonRg') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/************** Mes styles Generaux ***************/
+
+img {
+    max-width: 100%;
+    width: auto;
+    /* pour ie */
+    height: auto;
+    /* pour ie */
+    -ms-interpolation-mode: bicubic;
+    /* pour ie */
+    margin: auto;
+}
+
+body {
+    font-family: 'sansationregular';
+    font-size: 100%;
+    /* pour ie */
+}
+
+section {
+    padding-right: 5%;
+    padding-left: 5%;
+    padding-top: 5%;
+    padding-bottom: 5%;
+}
+
+/************** nav ***************/
+
+/* Menu burger */
+#menu-burger {
+    position: fixed;
+    top: 2.5em;
+    right: 2.5em;
+    display: inline-block;
+    cursor: pointer;
+    z-index: 1;
+}
+
+#menu-burger .bar1,
+#menu-burger .bar2,
+#menu-burger .bar3 {
+    width: 32px;
+    height: 3px;
+    background-color: $grisclair;
+    margin: 6px 0;
+    transition: 0.4s;
+}
+
+#menu-burger:hover {
+    opacity: .75;
+    transition: .5s;
+}
+
+#menu-burger.clicked .bar1 {
+    -webkit-transform: rotate(-45deg) translate(-9px, 6px);
+    transform: rotate(-45deg) translate(-5px, 6px);
+}
+
+#menu-burger.clicked .bar2 {
+    opacity: 0;
+}
+
+#menu-burger.clicked .bar3 {
+    -webkit-transform: rotate(45deg) translate(-8px, -8px);
+    transform: rotate(45deg) translate(-7px, -8px);
+}
+
+.barre-menu {
+    display: block;
+    width: 100%;
+    height: 49px;
+    position: fixed;
+    background-color: $bleunuit;
+    z-index: 2;
+    opacity: 0.8;
+}
+
+/* Main menu (slide) */
+#menu {
+    position: fixed;
+    z-index: 9999;
+    left: -90%;
+    top: auto;
+    background: $blanc;
+    padding: 4em 1em;
+    width: 25%;
+    min-height: 100%;
+    .quisuisje-cg {
+        //background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.3) 0%, white 109%);
+        background-image: url(https://cdn.w600.comps.canstockphoto.fr/modèle-seamless-vague-cliparts-vectorisés_csp6481386.jpg);
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+    .competences-cg {
+        background-color: $bleunuit;
+    }
+    .experience-cg{
+        background-color: $grisclair;
+    }
+    .contact-cg {
+        background-color: $bleuclair;
+    }
+}
+
+#menu ul li {
+    list-style: none;
+}
+
+#menu ul li a {
+    display: block;
+    color: black;
+    text-decoration: none;
+    font-weight: 400;
+    transition: background .5s;
+    padding: .3em;
+    text-align: center;
+    margin-bottom: .5em;
+    font-size: 2.2em;
+    font-family: "barber_street_personaluseonRg";
+}
+
+#menu ul li a:hover {
+    background: black;
+    transition: background .5s;
+}
+
+#menu.visible {
+    animation: .5s slideRight ease-in forwards;
+    transition-delay: 0;
+}
+
+#menu.invisible {
+    animation: 1s slideLeft ease-out forwards;
+    transition-delay: 0;
+}
+
+/* Animations pour le menu slide */
+@keyframes slideRight {
+    from {
+        left: -90%;
+    }
+
+    to {
+        left: 0%;
+    }
+}
+
+@-webkit-keyframes slideRight {
+    from {
+        left: -90%;
+    }
+
+    to {
+        left: 0%;
+    }
+}
+
+@keyframes slideLeft {
+    from {
+        left: 0%;
+    }
+
+    to {
+        left: -90%;
+    }
+}
+
+@-webkit-keyframes slideLeft {
+    from {
+        left: 0%;
+    }
+
+    to {
+        left: -90%;
+    }
+}
+
+/* Responsive design */
+
+@media (max-width:1024px) {
+    #menu {
+        left: -90%;
+        width: 50%;
+    }
+
+    #menu-burger.clicked {
+        position: fixed;
+    }
+
+    /* Animations pour le menu slide */
+    @keyframes slideRight {
+        from {
+            left: -90%;
+        }
+
+        to {
+            left: 0%;
+        }
+    }
+
+    @-webkit-keyframes slideRight {
+        from {
+            left: -90%;
+        }
+
+        to {
+            left: 0%;
+        }
+    }
+
+    @keyframes slideLeft {
+        from {
+            left: 0%;
+        }
+
+        to {
+            left: -90%;
+        }
+    }
+
+    @-webkit-keyframes slideLeft {
+        from {
+            left: 0%;
+        }
+
+        to {
+            left: -90%;
+        }
+    }
+}
+
+@media (max-width:600px) {
+    #menu-burger {
+        top: 0.5em;
+        right: 1em;
+        z-index: 9999;
+    }
+
+    #menu {
+        left: -200%;
+        width: 60%;
+    }
+
+    /* Animations pour le menu slide */
+    @keyframes slideRight {
+        from {
+            left: -200%;
+        }
+
+        to {
+            left: 0%;
+        }
+    }
+
+    @-webkit-keyframes slideRight {
+        from {
+            left: -200%;
+        }
+
+        to {
+            left: 0%;
+        }
+    }
+
+    @keyframes slideLeft {
+        from {
+            left: 0%;
+        }
+
+        to {
+            left: -200%;
+        }
+    }
+
+    @-webkit-keyframes slideLeft {
+        from {
+            left: 0%;
+        }
+
+        to {
+            left: -200%;
+        }
+    }
+}
+
+/************** Presentation ***************/
+
+.presentation {
+    background-image: url('https://cdn.w600.comps.canstockphoto.fr/modèle-seamless-vague-cliparts-vectorisés_csp6481386.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding-right: inherit;
+    padding-left: inherit;
+    padding-top: inherit;
+    padding-bottom: inherit;
+    height: 58vh;
+
+    .presentationopacity {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        align-content: center;
+        justify-content: center;
+        padding-right: 5%;
+        padding-left: 5%;
+        padding-top: 5%;
+        padding-bottom: 14%;
+        color: $blanc;
+        background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.3) 0%, rgba(255, 255, 255, 1) 109%);
+        background: -moz-linear-gradient(top, rgba(0, 0, 0, 0.3) 0%, rgba(255, 255, 255, 1) 109%);
+        background: -o-linear-gradient(top, rgba(0, 0, 0, 0.3) 0%, rgba(255, 255, 255, 1) 109%);
+        background: linear-gradient(top, rgba(0, 0, 0, 0.3) 0%, rgba(255, 255, 255, 1) 109%);
+        height: 58vh;
+    }
+
+    h1 {
+        font-family: 'barber_street_personaluseonRg';
+        font-size: 2.5em;
+        padding-top: 2%;
+    }
+
+    h2 {
+        padding-left: 29%;
+        font-style: italic;
+    }
+
+    h3 {
+        text-transform: uppercase;
+        text-align: center;
+        font-size: 1.25em;
+        /* 20/16 */
+        padding: 7vh 0vw 2vh 0vw;
+    }
+
+    p {
+        text-align: center;
+        padding-bottom: 14%;
+    }
+}
+
+/************** Competences ***************/
+
+.titreh2 {
+    h2 {
+        font-family: 'barber_street_personaluseonRg';
+        font-size: 2.5em;
+        text-align: center;
+        padding-top: 2%;
+    }
+}
+
+.competences {
+    @extend .titreh2;
+    background-color: $bleunuit;
+    padding-bottom: 14%;
+
+    h2 {
+        color: $bleuclair;
+    }
+
+    position:relative;
+
+    img {
+        position: absolute;
+        top: -2%;
+        left: 0%;
+    }
+}
+
+
+.competence {
+    h3 {
+        font-size: 1.25em;
+        /* 20/16 */
+        position: absolute;
+        background-color: $bleunuit;
+        position: absolute;
+        background-color: $bleunuit;
+        top: -6%;
+        width: 82%;
+        color: $bleuclair;
+    }
+
+    border: solid 1px $bleuclair;
+    text-align: center;
+    margin-top: 13%;
+    height: 250px;
+    width: 250px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    #barre-webmarketing,
+    #barre-webdesign,
+    #barre-developpement,
+    #barre-cms {
+        width: 1%;
+        background-color: $bleuclair;
+    }
+}
+
+.container-competences {
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 153vh;
+
+    .competence {
+        ul {
+            width: 70%;
+            color: $blanc;
+            line-height: 3vh;
+        }
+    }
+
+    .wrapper-progressbar {
+        display: flex;
+        align-items: center;
+
+        p.percent {
+            margin-top: 3vh;
+            margin-left: 2vw;
+            color: $blanc;
+        }
+    }
+
+    .barre-competences,
+    #barre-webmarketing,
+    #barre-webdesign,
+    #barre-developpement,
+    #barre-cms {
+        border-radius: 9px;
+        height: 7px;
+    }
+
+    .barre-competences {
+        width: 100%;
+        display: flex;
+        margin-top: 3vh;
+        align-items: center;
+        background-color: #dcd8d836;
+
+        p {
+            margin-left: 6%;
+        }
+    }
+}
+
+/************** Experiences ***************/
+
+.experiences {
+    @extend .titreh2;
+    background-color: $grisclair;
+    text-align: center;
+    padding-bottom: 14%;
+}
+
+.ordi {
+    width: 70%;
+    margin-top: 6%
+}
+
+/* slider */
+
+.slick-dots li.slick-active button:before,
+.slick-next:before, .slick-prev:before {
+    color : $bleunuit;
+}
+.carousel {
+    width: 90%;
+    margin: 0px auto;
+}
+
+.slick-slide {
+    margin: 10px;
+}
+
+.slick-slide img {
+    width: 70%;
+    /* border: 2px solid #fff;*/
+}
+
+.wrapper .slick-dots li button:before {
+    font-size: 20px;
+    color: $blanc;
+}
+
+
+.carousel {
+    @include breakpoint(phablet) {
+        .slick-slide img {
+            width: 100%;
+        }
+    }
+
+    @include breakpoint(mobileonly) {
+        .slick-slide img {
+            width: 100%;
+        }
+    }
+}
+
+
+/************** contact ***************/
+
+.contact {
+    @extend .titreh2;
+    background-color: $bleuclair;
+    text-align: center;
+
+    p {
+        margin-top: 5vh
+    }
+}
+
+.logo-linkedin {
+    width: 34%;
+    margin-top: 2vh;
+    text-align: center;
+    display: inline-block;
+}
+
+/* Fleches */
+
+.experiences {
+    position: relative;
+}
+
+.experiences,
+.contact,
+.competences {
+    .arrow {
+        position: relative;
+        width: 42px;
+        height: 42px;
+        transform: translate(-50%, -50%);
+        margin: auto;
+        bottom: 49px;
+
+        &:before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-left: $sizedesktop/3 solid rgba(0, 0, 0, $peakopacity);
+            border-bottom: $sizedesktop/3 solid rgba(0, 0, 0, $peakopacity);
+            transform: translate($sizedesktop/3, $sizedesktop*4/3)rotate(-45deg);
+            animation: arrows $speed linear infinite;
+        }
+
+        &:after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-left: $sizedesktop/3 solid rgba(0, 0, 0, $peakopacity);
+            border-bottom: $sizedesktop/3 solid rgba(0, 0, 0, $peakopacity);
+            transform: translate($sizedesktop*2/3, 0px)rotate(-45deg);
+            animation: arrows $speed linear infinite $speed/-2;
+        }
+    }
+}
+
+.competences {
+    .arrow {
+        transform: inherit;
+    }
+}
+
+@keyframes arrows {
+    0% {
+        border-left: $sizedesktop/3 solid rgba(0, 0, 0, 0);
+        border-bottom: $sizedesktop/3 solid rgba(0, 0, 0, 0);
+        transform: translate($sizedesktop/-6, $sizedesktop*4/-6)rotate(-45deg);
+    }
+
+    10%,
+    90% {
+        border-left: $sizedesktop/3 solid rgba(0, 0, 0, 0);
+        border-bottom: $sizedesktop/3 solid rgba(0, 0, 0, 0);
+    }
+
+    50% {
+        border-left: $sizedesktop/3 solid rgba(0, 0, 0, $peakopacity);
+        border-bottom: $sizedesktop/3 solid rgba(0, 0, 0, $peakopacity);
+        transform: translate($sizedesktop/-6, 0px)rotate(-45deg);
+    }
+
+    100% {
+        border-left: $sizedesktop/3 solid rgba(0, 0, 0, 0);
+        border-bottom: $sizedesktop/3 solid rgba(0, 0, 0, 0);
+        transform: translate($sizedesktop/-6, $sizedesktop*4/6)rotate(-45deg);
+    }
+}
