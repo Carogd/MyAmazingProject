@@ -15,6 +15,7 @@ export default function Home() {
   // }, [])
 
   const [searchRequest, setSearchRequest] = useState({
+    id: 1,
     value: '',
     searchRequestFinalValue : ''
   });
@@ -30,15 +31,24 @@ export default function Home() {
   const AddTask = e => {
     e.preventDefault();
     const searchRequestFinalValue = searchRequest.value;
+    // const searchRequestFinalValueArray = new Array(searchRequestId, searchRequestFinalValue);
+    // console.log('searchRequestFinalValueArray',searchRequestFinalValueArray);
+
     setSearchRequest({
+      id: searchRequest.id + 1,
       value: '',
       searchRequestFinalValue: searchRequestFinalValue,
     })
-    
-  if (searchRequestFinalValue) {
+
+    if (searchRequestFinalValue) {
       setSearchRequestId(searchRequestId + 1)
     }
-}
+    // return searchRequestFinalValueArray = new Array(searchRequestId, searchRequestFinalValue);
+  }
+
+console.log('searchRequest', searchRequestId);
+// console.log('searchRequestFinalValue', searchRequest);
+
 
   return (
     <>
