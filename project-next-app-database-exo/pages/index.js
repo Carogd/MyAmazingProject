@@ -1,9 +1,14 @@
+import Head from 'next/head';
 import MeetupList from "../components/meetups/MeetupList";
 import { MongoClient } from "mongodb";
 
 function HomePage(props) {
   return (
     <>
+    <Head>
+      <title>Mon application</title>
+      <meta name="description" content="Ma meta description pour mon app" />
+    </Head>
       <MeetupList meetups={props.meetups} />
     </>
   );
