@@ -24,7 +24,9 @@ function NewMeetupForm(props) {
       address: enteredAddress,
       description: enteredDescription,
     };
-    props.onAddMeetupTest(meetupData);
+    props.onAddMeetupTest(meetupData); 
+    // NOTE : subjectif n existe pas actuellement
+    // Ca veut dire ici qu on veut pouvoir avoir de dispo en en props pour le composant "NewMeetupForm" : ondAddMeetupTest={NomDeMaFonction(meetupData)}
     // console.log("props", props);
   }
 

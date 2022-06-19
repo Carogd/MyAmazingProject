@@ -1,43 +1,56 @@
 import { Fragment } from "react";
 import MeetupDetails from "../../components/meetups/MeetupDetail";
+import { MongoClient, ObjectId } from "mongodb";
 
-function DetailsPage() {
+function DetailsPage(props) {
   return (
     <MeetupDetails
-      description="this is the first meetup"
-      address="67 rue de la pluseive"
-      title="Bordeaux"
-      image="https://static-otelico.com/cache/bordeaux_home/France_Bordeaux_3840x2160.jpg"
+      address={props.detailsMeetups.address}
+      title={props.detailsMeetups.title}
+      image={props.detailsMeetups.image}
+      description={props.detailsMeetups.description}
     />
   );
 }
 
 export async function getStaticPaths() {
+  const client = await MongoClient.connect(
+    "mongodb+srv://carolinegd:Vegan122@cluster0.alun4.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
+  );
+  const db = client.db();
+  const meetupsCollection = db.collection("myFirstDatabase");
+
+  const meetups = await meetupsCollection.find({}, { _id: 1 }).toArray();
+  client.close();
+
   return {
     fallback: true,
-    paths: [
-      {
-        params: {
-          meetupId: "id1",
-        },
-      },
-    ],
+    paths: meetups.map((meetup) => ({
+      params: { meetupId: meetup._id.toString() },
+    })),
   };
 }
 
 export async function getStaticProps(context) {
-  // fetch data here
+  // Fetch data for a single meetup
   const meetupId = context.params.meetupId;
-
+  const client = await MongoClient.connect(
+    "mongodb+srv://carolinegd:Vegan122@cluster0.alun4.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
+  );
+  const db = client.db();
+  const meetupsCollection = db.collection("myFirstDatabase");
+  const selectedMeetups = await meetupsCollection.findOne({
+    _id: ObjectId(meetupId),
+  });
+  client.close();
   return {
     props: {
       detailsMeetups: {
-        id: meetupId,
-        description: "this is the first meetup",
-        address: "67 rue de la pluseive",
-        title: "Bordeaux",
-        image:
-          "https://static-otelico.com/cache/bordeaux_home/France_Bordeaux_3840x2160.jpg",
+        id: selectedMeetups._id.toString(),
+        address: selectedMeetups.address,
+        title: selectedMeetups.title,
+        image: selectedMeetups.image,
+        description: selectedMeetups.description,
       },
     },
   };

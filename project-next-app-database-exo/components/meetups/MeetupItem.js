@@ -5,10 +5,11 @@ import { useRouter } from "next/router";
 
 function MeetupItem(props) {
   const router = useRouter();
-  // console.log("props test", props);
-  function showDetailsHandler(props) {
-    router.push("/" + props.id);
-  // console.log("props.id test", id);
+   // console.log("props test", props);
+  
+  function showDetailsHandler() {
+   router.push("/" + props.id);
+   // console.log("props.id test", props.id);
   }
 
   return (
