@@ -1,0 +1,14 @@
+[
+    {
+        "type": "HUMAN",
+        "availableRole": ["WARRIOR", "MAGE", "PRIEST", "BLACKSMITH"]
+    },
+    {
+        "type": "ELF",
+        "availableRole": ["MAGE", "PRIEST"]
+    },
+    {
+        "type": "DWARF",
+        "availableRole": ["WARRIOR", "BLACKSMITH"]
+    }
+]

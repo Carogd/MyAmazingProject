@@ -1,0 +1,11 @@
+[
+  {
+    "type": "HUMAN"
+  },
+  {
+    "type": "ELF"
+  },
+  {
+    "type": "DWARF"
+  }
+]
