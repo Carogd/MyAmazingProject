@@ -5,11 +5,11 @@ import Dropdown from "../components/UI/molecules/dropdown";
 import Genders from "../pages/mock/gender.json";
 import Races from "../pages/mock/races.json";
 import Classes from "../pages/mock/classes.json";
-import { createContext } from "react";
+import { useState, useContext } from "react";
+import { ContextPerso } from "../components/UI/context/contextPerso";
 
-export const contextPerso = createContext(null);
 export default function Home() {
-  // const [stateGender, setGender] = useState(Genders);
+  // const { stateGender, setGender } = useContext(ContextPerso);
 
   return (
     <>
@@ -24,19 +24,18 @@ export default function Home() {
           href='/favicon.ico'
         />
       </Head>
-
-      {/* <contextPerso.Provider value={(stateGender, setGender)}> */}
+      {/* <ContextPerso> */}
       <h1>Choisir ton personnage</h1>
       <div>
         <Dropdown
-          // genders={stateGender}
-          genders={Genders}
+          // setGender={setGender}
+          // stateGender={stateGender}
           races={Races}
-          classes={Classes}
+          role={Classes}
+          genders={Genders}
         />
-        {/* {console.log("Test 2", Genders)} */}
       </div>
-      {/* </contextPerso.Provider> */}
+      {/* </ContextPerso> */}
     </>
   );
 }
