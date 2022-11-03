@@ -38,23 +38,29 @@
 
 // export { CountProvider, useCount };
 
-import { createContext, useState } from "react";
+import { createContext, useContext, useState } from "react";
 
 const ContextPerso = createContext("");
 
-export function contextPersoProvider({ children }) {
-  // const [stateGender, setGender] = useState("male");
-  // const choseGender = () => {
-  //   setGender(stateGender);
-  // };
-  // const valuesCustomPerso = {
-  //   gender: stateGender,
-  // };
-  const value = { test1: "1" };
+export function ContextPersoProvider({ children }) {
+  const [stateGender, setGender] = useState("male");
+
+  const valuesCustomPerso = {
+    gender: stateGender,
+  };
+  const finalCustomPerso = () => {
+    console.log(valuesCustomPerso.gender);
+    setGender(valuesCustomPerso.gender);
+  };
   return (
-    // <ContextPerso.Provider value={{ valuesCustomPerso, choseGender }}>
-    <ContextPerso.Provider value={value}>{children}</ContextPerso.Provider>
+    <ContextPerso.Provider value={{ stateGender, setGender, finalCustomPerso }}>
+      {children}
+    </ContextPerso.Provider>
   );
 }
+// HOOKS
+export function useContextPerso() {
+  return useContext(ContextPerso);
+}
 
-export default ContextPerso;
+// export default ContextPerso;

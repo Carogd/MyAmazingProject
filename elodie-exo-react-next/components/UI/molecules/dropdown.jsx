@@ -1,55 +1,34 @@
 import React from "react";
 import Buttun from "../atoms/buttun";
 import { useRef } from "react";
-import Newperso from "../template/newperso";
-import { useState, useContext } from "react";
-// import { useCount } from "../context/contextperso";
-import ContextPerso from "../context/contextperso";
+import { useContextPerso } from "../context/contextperso";
 
 const Dropdown = ({ races, role, genders }) => {
-  // const count = useCount();
-  // console.log("count", count);;
-  const { test1 } = useContext(ContextPerso);
-  console.log("test1", test1);
+  const { stateGender, setGender, finalCustomPerso } = useContextPerso();
   const genderRef = useRef();
-  const handleSubmitForm = (e) => {
-    e.preventDefault();
-    const genderValue = genderRef.current.value;
-    return genderValue;
-  };
-  const [stateGender, setGender] = useState("male");
-  // const choseGender = () => {
-  //   setGender(stateGender);
+  // const handleSubmitForm = (e) => {
+  //   e.preventDefault();
+  //   const genderValue = genderRef.current.value;
+  //   return genderValue;
   // };
-  const valuesCustomPerso = {
-    gender: stateGender,
+  const choseGender = (target) => {
+    setGender(target);
   };
 
   return (
     <>
       <form
-        onSubmit={handleSubmitForm}
-        onClick={() => {
-          console.log(valuesCustomPerso);
-          return valuesCustomPerso;
-          // const finalState = valuesCustomPerso;
-          // console.log("valuesCustomPerso 2", finalState);
-          // return finalState;
-        }}
+        // onSubmit={handleSubmitForm}
+        onClick={finalCustomPerso}
       >
         <p>GENRE :</p>
-        {/* <p>{test}</p> */}
         <select
           name='custom-character'
           id='custom-character'
           ref={genderRef}
-          // onChange={(e) => {
-          //   const selectedGender = e.target.value;
-          //   setGender(selectedGender);
-          // }}
           onChange={(e) => {
             const selectedGender = e.target.value;
-            setGender(selectedGender);
+            choseGender(selectedGender);
           }}
         >
           {genders.map((gender, i) => {
@@ -95,8 +74,7 @@ const Dropdown = ({ races, role, genders }) => {
             );
           })}
         </select>
-        <Buttun valuesCustomPerso={valuesCustomPerso.gender} />
-        {/* <Newperso valuesCustomPerso={valuesCustomPerso.gender} /> */}
+        <Buttun valuesCustomPerso={stateGender} />
       </form>
     </>
   );

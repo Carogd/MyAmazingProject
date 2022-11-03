@@ -6,7 +6,8 @@ import Genders from "../pages/mock/gender.json";
 import Races from "../pages/mock/races.json";
 import Classes from "../pages/mock/classes.json";
 import { useState, useContext } from "react";
-import { ContextPerso } from "../components/UI/context/contextPerso";
+// import ContextPerso from "../components/UI/context/contextperso";
+// import contextPersoProvider from "../components/UI/context/contextperso";
 
 export default function Home() {
   // const { stateGender, setGender } = useContext(ContextPerso);
@@ -24,7 +25,7 @@ export default function Home() {
           href='/favicon.ico'
         />
       </Head>
-      {/* <ContextPerso> */}
+
       <h1>Choisir ton personnage</h1>
       <div>
         <Dropdown
@@ -35,7 +36,6 @@ export default function Home() {
           genders={Genders}
         />
       </div>
-      {/* </ContextPerso> */}
     </>
   );
 }

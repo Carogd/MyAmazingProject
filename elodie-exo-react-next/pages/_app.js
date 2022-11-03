@@ -1,11 +1,11 @@
 import "../styles/globals.css";
-import contextPersoProvider from "../components/UI/context/contextperso";
+import { ContextPersoProvider } from "../components/UI/context/contextperso";
 
 function MyApp({ Component, pageProps }) {
   return (
-    <contextPersoProvider>
+    <ContextPersoProvider>
       <Component {...pageProps} />
-    </contextPersoProvider>
+    </ContextPersoProvider>
   );
 }
 
