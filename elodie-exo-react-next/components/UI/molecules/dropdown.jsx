@@ -1,34 +1,27 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Buttun from "../atoms/buttun";
 import { useRef } from "react";
 import { useContextPerso } from "../context/contextperso";
 
 const Dropdown = ({ races, role, genders }) => {
-  const { stateGender, setGender, finalCustomPerso } = useContextPerso();
-  const genderRef = useRef();
-  // const handleSubmitForm = (e) => {
-  //   e.preventDefault();
-  //   const genderValue = genderRef.current.value;
-  //   return genderValue;
-  // };
-  const choseGender = (target) => {
-    setGender(target);
-  };
+  const { genderRef, choseGender, genderRefFinal } = useContextPerso();
 
+  useEffect(() => {
+    choseGender(genderRefFinal);
+    localStorage.setItem("gender", genderRefFinal);
+  }, [genderRefFinal]);
   return (
     <>
-      <form
-        // onSubmit={handleSubmitForm}
-        onClick={finalCustomPerso}
-      >
+      <form>
         <p>GENRE :</p>
         <select
           name='custom-character'
           id='custom-character'
           ref={genderRef}
           onChange={(e) => {
-            const selectedGender = e.target.value;
-            choseGender(selectedGender);
+            genderRefFinal = e.target.value;
+            choseGender(genderRefFinal);
+            // console.log("genderRefFinal", genderRefFinal);
           }}
         >
           {genders.map((gender, i) => {
@@ -74,7 +67,7 @@ const Dropdown = ({ races, role, genders }) => {
             );
           })}
         </select>
-        <Buttun valuesCustomPerso={stateGender} />
+        <Buttun valuesCustomPerso={genderRefFinal} />
       </form>
     </>
   );

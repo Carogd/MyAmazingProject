@@ -39,21 +39,30 @@
 // export { CountProvider, useCount };
 
 import { createContext, useContext, useState } from "react";
+import { useRef } from "react";
+import React, { useEffect } from "react";
 
 const ContextPerso = createContext("");
 
 export function ContextPersoProvider({ children }) {
   const [stateGender, setGender] = useState("male");
+  const genderRef = useRef();
+  const genderRefFinal = stateGender;
 
-  const valuesCustomPerso = {
-    gender: stateGender,
+  const choseGender = (target) => {
+    setGender(target);
   };
-  const finalCustomPerso = () => {
-    console.log(valuesCustomPerso.gender);
-    setGender(valuesCustomPerso.gender);
-  };
+
   return (
-    <ContextPerso.Provider value={{ stateGender, setGender, finalCustomPerso }}>
+    <ContextPerso.Provider
+      value={{
+        stateGender,
+        setGender,
+        choseGender,
+        genderRef,
+        genderRefFinal,
+      }}
+    >
       {children}
     </ContextPerso.Provider>
   );
