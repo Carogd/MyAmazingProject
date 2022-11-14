@@ -1,7 +1,5 @@
 // import * as React from "react";
-
 // const CountContext = React.createContext();
-
 // function countReducer(state, action) {
 //   switch (action.type) {
 //     case "increment": {
@@ -35,32 +33,24 @@
 //   }
 //   return context;
 // }
-
 // export { CountProvider, useCount };
 
 import { createContext, useContext, useState } from "react";
 import { useRef } from "react";
-import React, { useEffect } from "react";
+import React from "react";
 
 const ContextPerso = createContext("");
 
 export function ContextPersoProvider({ children }) {
   const [stateGender, setGender] = useState("male");
   const genderRef = useRef();
-  const genderRefFinal = stateGender;
-
-  const choseGender = (target) => {
-    setGender(target);
-  };
 
   return (
     <ContextPerso.Provider
       value={{
-        stateGender,
         setGender,
-        choseGender,
         genderRef,
-        genderRefFinal,
+        stateGender,
       }}
     >
       {children}
@@ -71,5 +61,3 @@ export function ContextPersoProvider({ children }) {
 export function useContextPerso() {
   return useContext(ContextPerso);
 }
-
-// export default ContextPerso;

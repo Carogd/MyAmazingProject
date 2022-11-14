@@ -4,12 +4,12 @@ import { useRef } from "react";
 import { useContextPerso } from "../context/contextperso";
 
 const Dropdown = ({ races, role, genders }) => {
-  const { genderRef, choseGender, genderRefFinal } = useContextPerso();
+  const { genderRef, setGender, stateGender } = useContextPerso();
 
   useEffect(() => {
-    choseGender(genderRefFinal);
-    localStorage.setItem("gender", genderRefFinal);
-  }, [genderRefFinal]);
+    setGender(stateGender);
+    localStorage.setItem("gender", stateGender);
+  }, [stateGender]);
   return (
     <>
       <form>
@@ -19,9 +19,8 @@ const Dropdown = ({ races, role, genders }) => {
           id='custom-character'
           ref={genderRef}
           onChange={(e) => {
-            genderRefFinal = e.target.value;
-            choseGender(genderRefFinal);
-            // console.log("genderRefFinal", genderRefFinal);
+            stateGender = e.target.value;
+            setGender(stateGender);
           }}
         >
           {genders.map((gender, i) => {
@@ -67,7 +66,7 @@ const Dropdown = ({ races, role, genders }) => {
             );
           })}
         </select>
-        <Buttun valuesCustomPerso={genderRefFinal} />
+        <Buttun valuesCustomPerso={stateGender} />
       </form>
     </>
   );
