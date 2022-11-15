@@ -3,7 +3,7 @@ import Newperso from "../components/UI/template/newperso";
 import { usePerso } from "../components/UI/context/contextperso";
 
 function CustomPerso() {
-  const { statePerso, dispatch } = usePerso();
+  const { statePerso } = usePerso();
   return (
     <>
       <Newperso valuesCustomPerso={statePerso} />

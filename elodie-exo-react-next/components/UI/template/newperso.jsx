@@ -1,14 +1,58 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { usePerso } from "../context/contextperso";
+import Card from "@mui/material/Card";
+import CardActions from "@mui/material/CardActions";
+import CardContent from "@mui/material/CardContent";
+import CardMedia from "@mui/material/CardMedia";
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
 
 const Newperso = () => {
   const { localStoragePerso } = usePerso();
   return (
-    <>
-      <div id='genderType_Perso'>GENRE : {localStoragePerso.gender}</div>
-      <div id='raceType_Perso'>RACE : {localStoragePerso.race}</div>
-      <div id='roleType_Perso'>ROLE : {localStoragePerso.role}</div>
-    </>
+    <Card sx={{ maxWidth: 345 }}>
+      <CardMedia
+        component='img'
+        height='140'
+        image={localStoragePerso.imagePerso}
+        alt='image perso'
+      />
+      <CardContent>
+        <Typography
+          gutterBottom
+          variant='h5'
+          component='div'
+        >
+          Welcome {localStoragePerso.name} !
+        </Typography>
+        <Typography
+          variant='body2'
+          color='text.secondary'
+        >
+          GENRE : {localStoragePerso.gender}
+        </Typography>
+        <Typography
+          variant='body2'
+          color='text.secondary'
+        >
+          RACE : {localStoragePerso.race}
+        </Typography>
+        <Typography
+          variant='body2'
+          color='text.secondary'
+        >
+          ROLE : {localStoragePerso.role}
+        </Typography>
+      </CardContent>
+      <CardActions>
+        <Button
+          href='/'
+          size='small'
+        >
+          Modifier mon personnage
+        </Button>
+      </CardActions>
+    </Card>
   );
 };
 

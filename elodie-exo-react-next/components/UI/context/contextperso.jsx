@@ -6,16 +6,27 @@ import {
   useEffect,
 } from "react";
 import React from "react";
+import Perso01 from "../../../public/asset/perso01.jpg";
+import Perso02 from "../../../public/asset/perso02.jpeg";
 
 const ContextPerso = createContext();
 const persoInitialState = {
+  name: "",
   gender: "",
   race: "",
   role: "",
+  imagePerso: "",
 };
 
 function persoReducer(state, action) {
   switch (action.type) {
+    case "update_name": {
+      return {
+        ...state,
+        [action.key]: action.value,
+        localStorage: localStorage.setItem("Name", action.value),
+      };
+    }
     case "update_gender": {
       return {
         ...state,
@@ -45,15 +56,18 @@ function persoReducer(state, action) {
 
 function PersoProvider({ children }) {
   const [localStoragePerso, setLocalStorage] = useState({
+    name: "",
     gender: "",
     race: "",
     role: "",
+    imagePerso: "",
   });
 
   useEffect(() => {
     const localStoragePersoGender = localStorage.getItem("Gender");
     const localStorageRace = localStorage.getItem("Race");
     const localStorageRole = localStorage.getItem("Role");
+    const localStoragePersoName = localStorage.getItem("Name");
     setLocalStorage({
       gender: localStoragePersoGender
         ? localStoragePersoGender
@@ -64,6 +78,11 @@ function PersoProvider({ children }) {
       role: localStorageRole
         ? localStorageRole
         : "Choose a role from the previous page",
+      imagePerso:
+        localStoragePersoGender === "male" ? Perso01.src : Perso02.src,
+      name: localStoragePersoName
+        ? localStoragePersoName
+        : "Choose a gender from the previous page",
     });
   }, []);
 

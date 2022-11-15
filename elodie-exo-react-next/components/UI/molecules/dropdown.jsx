@@ -1,17 +1,35 @@
 import React from "react";
 import Buttun from "../atoms/buttun";
 import { usePerso } from "../context/contextperso";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select from "@mui/material/Select";
+import { TextField } from "@mui/material";
 
 const Dropdown = ({ races, role, genders }) => {
   const { statePerso, dispatch } = usePerso();
 
   return (
     <>
-      <form>
-        <p>GENRE :</p>
-        <select
+      <TextField
+        label='Nom du personnage'
+        value={statePerso.name}
+        onChange={(e) => {
+          dispatch({
+            type: "update_name",
+            value: e.target.value,
+            key: "name",
+          });
+        }}
+      />
+      <FormControl
+        variant='standard'
+        sx={{ m: 1, minWidth: 120 }}
+      >
+        <InputLabel>GENRE</InputLabel>
+        <Select
           name='custom-character'
-          id='custom-character'
           value={statePerso.gender}
           onChange={(e) => {
             dispatch({
@@ -21,22 +39,26 @@ const Dropdown = ({ races, role, genders }) => {
             });
           }}
         >
-          {console.log("test Dropdown", statePerso.gender)}
+          {/* {console.log("test Dropdown", statePerso.gender)} */}
           {genders.map((gender, i) => {
             return (
-              <option
+              <MenuItem
                 value={gender.gender}
                 key={i}
               >
                 {gender.gender}
-              </option>
+              </MenuItem>
             );
           })}
-        </select>
-        <p>RACE : </p>
-        <select
+        </Select>
+      </FormControl>
+      <FormControl
+        variant='standard'
+        sx={{ m: 1, minWidth: 120 }}
+      >
+        <InputLabel>RACE</InputLabel>
+        <Select
           name='custom-character'
-          id='custom-character'
           value={statePerso.race}
           onChange={(e) => {
             dispatch({
@@ -48,20 +70,24 @@ const Dropdown = ({ races, role, genders }) => {
         >
           {races.map((race, i) => {
             return (
-              <option
+              <MenuItem
                 value={race.type}
                 key={i}
               >
                 {race.type}
-              </option>
+              </MenuItem>
             );
           })}
-        </select>
-        <p>LA CLASSE : </p>
-        <select
+        </Select>
+      </FormControl>
+      <FormControl
+        variant='standard'
+        sx={{ m: 1, minWidth: 120 }}
+      >
+        <InputLabel>CLASSE</InputLabel>
+        <Select
           name='custom-character'
-          id='custom-character'
-          value={statePerso.race}
+          value={statePerso.role}
           onChange={(e) => {
             dispatch({
               type: "update_role",
@@ -72,17 +98,17 @@ const Dropdown = ({ races, role, genders }) => {
         >
           {role.map((role, i) => {
             return (
-              <option
+              <MenuItem
                 value={role.availableRole}
                 key={i}
               >
                 {role.availableRole}
-              </option>
+              </MenuItem>
             );
           })}
-        </select>
-        <Buttun />
-      </form>
+        </Select>
+      </FormControl>
+      <Buttun />
     </>
   );
 };

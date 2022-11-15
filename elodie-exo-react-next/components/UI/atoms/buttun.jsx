@@ -1,15 +1,19 @@
 import React from "react";
 import { Button } from "@mui/material";
+import { useContext } from "react";
+import { usePerso } from "../context/contextperso";
 
-function Buttun({ valuesCustomPerso }) {
+function Buttun() {
+  const { statePerso } = usePerso();
   return (
     <div className='Button-submit'>
       <Button
         type='submit'
         color='secondary'
         href='/custom-perso'
+        variant='outlined'
       >
-        Creer {valuesCustomPerso}
+        Creer {statePerso.gender}
       </Button>
     </div>
   );
