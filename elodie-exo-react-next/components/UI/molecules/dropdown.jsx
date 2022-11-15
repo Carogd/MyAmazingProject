@@ -1,15 +1,10 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Buttun from "../atoms/buttun";
-import { useRef } from "react";
-import { useContextPerso } from "../context/contextperso";
+import { usePerso } from "../context/contextperso";
 
 const Dropdown = ({ races, role, genders }) => {
-  const { genderRef, setGender, stateGender } = useContextPerso();
+  const { statePerso, dispatch } = usePerso();
 
-  useEffect(() => {
-    setGender(stateGender);
-    localStorage.setItem("gender", stateGender);
-  }, [stateGender]);
   return (
     <>
       <form>
@@ -17,12 +12,16 @@ const Dropdown = ({ races, role, genders }) => {
         <select
           name='custom-character'
           id='custom-character'
-          ref={genderRef}
+          value={statePerso.gender}
           onChange={(e) => {
-            stateGender = e.target.value;
-            setGender(stateGender);
+            dispatch({
+              type: "update_gender",
+              value: e.target.value,
+              key: "gender",
+            });
           }}
         >
+          {console.log("test Dropdown", statePerso.gender)}
           {genders.map((gender, i) => {
             return (
               <option
@@ -38,6 +37,14 @@ const Dropdown = ({ races, role, genders }) => {
         <select
           name='custom-character'
           id='custom-character'
+          value={statePerso.race}
+          onChange={(e) => {
+            dispatch({
+              type: "update_race",
+              value: e.target.value,
+              key: "race",
+            });
+          }}
         >
           {races.map((race, i) => {
             return (
@@ -54,6 +61,14 @@ const Dropdown = ({ races, role, genders }) => {
         <select
           name='custom-character'
           id='custom-character'
+          value={statePerso.race}
+          onChange={(e) => {
+            dispatch({
+              type: "update_role",
+              value: e.target.value,
+              key: "role",
+            });
+          }}
         >
           {role.map((role, i) => {
             return (
@@ -66,7 +81,7 @@ const Dropdown = ({ races, role, genders }) => {
             );
           })}
         </select>
-        <Buttun valuesCustomPerso={stateGender} />
+        <Buttun />
       </form>
     </>
   );

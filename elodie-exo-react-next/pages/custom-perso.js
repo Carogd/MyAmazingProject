@@ -1,12 +1,12 @@
 import React from "react";
 import Newperso from "../components/UI/template/newperso";
-import { useContextPerso } from "../components/UI/context/contextperso";
+import { usePerso } from "../components/UI/context/contextperso";
 
 function CustomPerso() {
-  const { stateGender } = useContextPerso();
+  const { statePerso, dispatch } = usePerso();
   return (
     <>
-      <Newperso valuesCustomPerso={stateGender} />
+      <Newperso valuesCustomPerso={statePerso} />
     </>
   );
 }

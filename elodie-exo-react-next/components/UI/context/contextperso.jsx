@@ -1,63 +1,86 @@
-// import * as React from "react";
-// const CountContext = React.createContext();
-// function countReducer(state, action) {
-//   switch (action.type) {
-//     case "increment": {
-//       return { count: state.count + 1 };
-//     }
-//     case "decrement": {
-//       return { count: state.count - 1 };
-//     }
-//     default: {
-//       throw new Error(`Unhandled action type: ${action.type}`);
-//     }
-//   }
-// }
-
-// function CountProvider({ children }) {
-//   const [state, dispatch] = React.useReducer(countReducer, { count: 0 });
-//   // NOTE: you might need to memoize this value
-//   // Learn more in http://kcd.im/optimize-context
-//   const value = { state, dispatch };
-//   return (
-//     <CountContext.Provider value={{ test: 1 }}>
-//       {children}
-//     </CountContext.Provider>
-//   );
-// }
-
-// function useCount() {
-//   const context = React.useContext(CountContext);
-//   if (context === undefined) {
-//     throw new Error("useCount must be used within a CountProvider");
-//   }
-//   return context;
-// }
-// export { CountProvider, useCount };
-
-import { createContext, useContext, useState } from "react";
-import { useRef } from "react";
+import {
+  createContext,
+  useContext,
+  useReducer,
+  useState,
+  useEffect,
+} from "react";
 import React from "react";
 
-const ContextPerso = createContext("");
+const ContextPerso = createContext();
+const persoInitialState = {
+  gender: "",
+  race: "",
+  role: "",
+};
 
-export function ContextPersoProvider({ children }) {
-  const [stateGender, setGender] = useState("male");
-  const genderRef = useRef();
+function persoReducer(state, action) {
+  switch (action.type) {
+    case "update_gender": {
+      return {
+        ...state,
+        [action.key]: action.value,
+        localStorage: localStorage.setItem("Gender", action.value),
+      };
+    }
+    case "update_race": {
+      return {
+        ...state,
+        [action.key]: action.value,
+        localStorage: localStorage.setItem("Race", action.value),
+      };
+    }
+    case "update_role": {
+      return {
+        ...state,
+        [action.key]: action.value,
+        localStorage: localStorage.setItem("Role", action.value),
+      };
+    }
+    default: {
+      throw new Error(`Unhandled action type: ${action.type}`);
+    }
+  }
+}
+
+function PersoProvider({ children }) {
+  const [localStoragePerso, setLocalStorage] = useState({
+    gender: "",
+    race: "",
+    role: "",
+  });
+
+  useEffect(() => {
+    const localStoragePersoGender = localStorage.getItem("Gender");
+    const localStorageRace = localStorage.getItem("Race");
+    const localStorageRole = localStorage.getItem("Role");
+    setLocalStorage({
+      gender: localStoragePersoGender
+        ? localStoragePersoGender
+        : "Choose a gender from the previous page",
+      race: localStorageRace
+        ? localStorageRace
+        : "Choose a race from the previous page",
+      role: localStorageRole
+        ? localStorageRole
+        : "Choose a role from the previous page",
+    });
+  }, []);
+
+  const [statePerso, dispatch] = useReducer(persoReducer, persoInitialState);
 
   return (
-    <ContextPerso.Provider
-      value={{
-        setGender,
-        genderRef,
-        stateGender,
-      }}
-    >
+    <ContextPerso.Provider value={{ statePerso, dispatch, localStoragePerso }}>
       {children}
     </ContextPerso.Provider>
   );
 }
-// HOOKS
-export function useContextPerso() {
-  return useContext(ContextPerso);
+
+function usePerso() {
+  const context = useContext(ContextPerso);
+  if (context === undefined) {
+    throw new Error("useCount must be used within a PersoProvider");
+  }
+  return context;
 }
+export { PersoProvider, usePerso };
