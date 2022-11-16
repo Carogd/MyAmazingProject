@@ -12,9 +12,9 @@ import Perso02 from "../../../public/asset/perso02.jpeg";
 const ContextPerso = createContext();
 const persoInitialState = {
   name: "",
-  gender: "",
-  race: "",
-  role: "",
+  gender: "male",
+  race: "ELF",
+  role: "WARRIOR",
   imagePerso: "",
 };
 
@@ -23,6 +23,7 @@ function persoReducer(state, action) {
     case "update_name": {
       return {
         ...state,
+        // [action.key]: action.value -> utiliser quand on connait pas la la key
         [action.key]: action.value,
         localStorage: localStorage.setItem("Name", action.value),
       };
@@ -57,9 +58,9 @@ function persoReducer(state, action) {
 function PersoProvider({ children }) {
   const [localStoragePerso, setLocalStorage] = useState({
     name: "",
-    gender: "",
-    race: "",
-    role: "",
+    gender: "male",
+    race: "ELF",
+    role: "WARRIOR",
     imagePerso: "",
   });
 
@@ -82,7 +83,7 @@ function PersoProvider({ children }) {
         localStoragePersoGender === "male" ? Perso01.src : Perso02.src,
       name: localStoragePersoName
         ? localStoragePersoName
-        : "Choose a gender from the previous page",
+        : "Choose a name from the previous page",
     });
   }, []);
 
@@ -98,7 +99,7 @@ function PersoProvider({ children }) {
 function usePerso() {
   const context = useContext(ContextPerso);
   if (context === undefined) {
-    throw new Error("useCount must be used within a PersoProvider");
+    throw new Error("usePerso must be used within a PersoProvider");
   }
   return context;
 }

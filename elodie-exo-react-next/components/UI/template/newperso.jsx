@@ -6,6 +6,10 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
+import Statistics from "../molecules/statistics";
+import Dwarf from "../../../pages/mock/dwarf.json";
+import Elfe from "../../../pages/mock/elf.json";
+import Human from "../../../pages/mock/human.json";
 
 const Newperso = () => {
   const { localStoragePerso } = usePerso();
@@ -43,6 +47,7 @@ const Newperso = () => {
         >
           ROLE : {localStoragePerso.role}
         </Typography>
+        <Statistics dwarf={Dwarf} />
       </CardContent>
       <CardActions>
         <Button
