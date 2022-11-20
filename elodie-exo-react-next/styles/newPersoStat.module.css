@@ -1,0 +1,20 @@
+.stats_perso {
+  margin: 5px 0px;
+  width: 47%;
+}
+
+.stats_perso_wrapper {
+  margin: 20px 0px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.perso_cart {
+  margin: 3vw auto;
+  width: 65%;
+}
+
+.perso_cart_content {
+  background-color: #f2f4f4;
+}

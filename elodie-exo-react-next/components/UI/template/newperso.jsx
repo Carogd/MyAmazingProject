@@ -10,18 +10,22 @@ import Statistics from "../molecules/statistics";
 import Dwarf from "../../../pages/mock/dwarf.json";
 import Elfe from "../../../pages/mock/elf.json";
 import Human from "../../../pages/mock/human.json";
+import styles from "../../../styles/newPersoStat.module.css";
 
 const Newperso = () => {
   const { localStoragePerso } = usePerso();
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card
+      className={styles.perso_cart}
+      sx={{ maxWidth: 345 }}
+    >
       <CardMedia
         component='img'
         height='140'
         image={localStoragePerso.imagePerso}
         alt='image perso'
       />
-      <CardContent>
+      <CardContent className={styles.perso_cart_content}>
         <Typography
           gutterBottom
           variant='h5'
@@ -47,7 +51,11 @@ const Newperso = () => {
         >
           ROLE : {localStoragePerso.role}
         </Typography>
-        <Statistics dwarf={Dwarf} />
+        <Statistics
+          dwarf={Dwarf}
+          elfe={Elfe}
+          human={Human}
+        />
       </CardContent>
       <CardActions>
         <Button

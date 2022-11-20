@@ -39,7 +39,6 @@ const Dropdown = ({ races, role, genders }) => {
             });
           }}
         >
-          {/* {console.log("test Dropdown", statePerso.gender)} */}
           {genders.map((gender, i) => {
             return (
               <MenuItem
