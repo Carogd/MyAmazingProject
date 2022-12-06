@@ -2,7 +2,7 @@
 
 // type Data = {};
 
-// export const getServerSideProps: GetServerSideProps<{ data: Data }> = async (
+// export const getServerSidePropsAlbum: GetServerSideProps<{ data: Data }> = async (
 //   context
 // ) => {
 //   const res = await fetch("https://api.deezer.com/user/2529/playlists");

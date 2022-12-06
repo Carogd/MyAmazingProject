@@ -1,22 +1,28 @@
 import React from "react";
 import { useContext, useReducer } from "react";
+import { GetServerSideProps } from "next";
 
 type Action = { type: "increment" } | { type: "decrement" };
 type Dispatch = (action: Action) => void;
 type StateArtist = { id: number };
-type InitialStateArtistType = {
+export type DataArtist = {};
+// export type Data = {
+//   picture?: string | undefined;
+//   id: number;
+// };
+export type InitialStateArtistType = {
   id: number;
-  name: string;
-  link: string;
-  share: string;
+  name?: string;
+  link?: string;
+  share?: string;
   picture: string;
-  picture_small: string;
-  picture_medium: string;
-  picture_big: string;
-  picture_xl: string;
-  nb_album: number;
-  radio: number;
-  tracklist: number;
+  picture_small?: string;
+  picture_medium?: string;
+  picture_big?: string;
+  picture_xl?: string;
+  nb_album?: number;
+  radio?: number;
+  tracklist?: number;
 };
 const InitialStateArtist: InitialStateArtistType = {
   id: 0,
@@ -38,6 +44,21 @@ const ContextDeezer = React.createContext<
   { state: StateArtist; dispatch: Dispatch } | undefined
 >(undefined);
 
+// DATA artist
+// export const getServerSidePropsAlbum: GetServerSideProps<{
+//   data: Data;
+// }> = async (context) => {
+//   const res = await fetch("https://api.deezer.com/artist/5");
+//   const data: Data = await res.json();
+
+//   return {
+//     props: {
+//       data,
+//     },
+//   };
+// };
+
+// REDUCER
 function countReducer(state: StateArtist, action: Action) {
   switch (action.type) {
     case "increment": {

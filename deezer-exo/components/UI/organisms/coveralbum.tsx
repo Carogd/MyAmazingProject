@@ -1,14 +1,32 @@
 import React from "react";
+import { Data } from "../../../pages";
 import Buttun from "../atoms/button";
-import ArtistCharacteristic from "../molecules/artistcharacteristic";
 
-const CoverAlbum = () => {
+const CoverAlbum = (data: Data) => {
   return (
-    <div>
-      <p>CoverAlbum</p>
-      {/* <ArtistCharacteristic data={{}} /> */}
-      <Buttun />
-    </div>
+    <ul>
+      <p>Number {data.id}</p>
+      <img
+        src={data.picture}
+        alt='picture Cover'
+      />
+      {/* <>{console.log("test CoverAlbum", data)}</> */}
+      {/* {data.map((data: any, i: React.Key | null | undefined) => {
+        return (
+          <li
+            value={data.id}
+            key={i}
+          >
+            <p>Number {data.id}</p>
+            <img
+              src={data.picture}
+              alt='picture Cover'
+            />
+            <Buttun />
+          </li>
+        );
+      })} */}
+    </ul>
   );
 };
 
