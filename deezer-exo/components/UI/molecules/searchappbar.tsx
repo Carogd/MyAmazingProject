@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { styled, alpha } from "@mui/material/styles";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -8,6 +8,7 @@ import Typography from "@mui/material/Typography";
 import InputBase from "@mui/material/InputBase";
 import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
+import { useSearch } from "../context/contextalbum";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -52,6 +53,8 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function SearchAppBar() {
+  // const [word, setWord] = useState("");
+  const { dispatch } = useSearch();
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position='static'>
@@ -71,7 +74,7 @@ export default function SearchAppBar() {
             component='div'
             sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
           >
-            DEEZER APP
+            DEEZER APP - CARO
           </Typography>
           <Search>
             <SearchIconWrapper>
@@ -80,6 +83,14 @@ export default function SearchAppBar() {
             <StyledInputBase
               placeholder='Search…'
               inputProps={{ "aria-label": "search" }}
+              onChange={(e) => {
+                //   setWord(e.target.value);
+                dispatch({
+                  type: "update_search",
+                  value: e.target.value,
+                  key: "input-search",
+                });
+              }}
             />
           </Search>
         </Toolbar>

@@ -2,6 +2,9 @@
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
-}
+};
 
-module.exports = nextConfig
+// const withCors = require("next-cors");
+
+// module.exports = withCors();
+module.exports = nextConfig;

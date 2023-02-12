@@ -16,12 +16,15 @@
     "@types/node": "18.11.10",
     "@types/react": "18.0.25",
     "@types/react-dom": "18.0.9",
+    "axios": "^1.2.3",
     "eslint": "8.28.0",
     "eslint-config-next": "13.0.5",
     "next": "13.0.5",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "typescript": "4.9.3"
+    "react-icons": "^4.7.1",
+    "typescript": "4.9.3",
+    "use-sound": "^4.0.1"
   },
   "description": "https://github.com/mui/material-ui/blob/v5.10.16/docs/data/material/components/app-bar/SearchAppBar.tsx"
 }

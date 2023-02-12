@@ -1,17 +1,23 @@
 .container {
   padding: 0 2rem;
 }
-
-.main {
-  min-height: 100vh;
-  padding: 4rem 0;
-  flex: 1;
+.containerv2 {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
   justify-content: center;
-  align-items: center;
+  margin: 14px 0px;
 }
 
+.albumContainer {
+  padding: 0 2rem;
+  width: 20%;
+  padding: 1rem;
+  width: 23%;
+  text-align: center;
+  background-color: #f7f7f7;
+  margin: 0.5rem;
+  border-radius: 0.5rem;
+}
 /* Style  A ajuster */
 .title a {
   color: #0070f3;

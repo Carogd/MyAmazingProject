@@ -1,11 +1,11 @@
 import "../styles/globals.css";
 import type { AppProps } from "next/app";
-import { ProviderDeezer } from "../components/UI/context/contextalbum";
+import { SearchProvider } from "../components/UI/context/contextalbum";
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <ProviderDeezer>
+    <SearchProvider>
       <Component {...pageProps} />
-    </ProviderDeezer>
+    </SearchProvider>
   );
 }

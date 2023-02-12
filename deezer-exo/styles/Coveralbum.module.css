@@ -1,0 +1,14 @@
+.coveralbum {
+  width: 100%;
+}
+
+.favorites {
+  margin: 7px 0px;
+  text-transform: uppercase;
+  font-size: 12px;
+}
+
+.favoritesWrapper {
+  display: flex;
+  align-items: center;
+}

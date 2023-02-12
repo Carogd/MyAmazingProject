@@ -1,0 +1,25 @@
+.wrapperAristSimilaire {
+  display: flex;
+  justify-content: center;
+  margin: 14px 0px;
+  margin: 0px auto;
+  width: 90%;
+  justify-content: center;
+  /* overflow: hidden; */
+  align-items: center;
+}
+
+.containerAristSimilaire {
+  padding: 0 2rem;
+  width: 20%;
+  padding: 1rem;
+  width: 23%;
+  text-align: center;
+  background-color: #f7f7f7;
+  margin: 0.5rem;
+  border-radius: 0.5rem;
+}
+
+.imageSlider {
+  width: 100%;
+}
