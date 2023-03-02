@@ -1,0 +1,28 @@
+* {
+  box-sizing: border-box;
+}
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  .card-image {
+    width: 100%;
+  }
+  .card-body {
+    padding: 1rem;
+  }
+  .card-footer {
+    display: flex;
+    justify-content: space-around;
+    padding: 10px;
+  }
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.col {
+  width: calc(100% / 4);
+  padding: 10px;
+}
