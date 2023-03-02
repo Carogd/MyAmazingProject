@@ -1,28 +1,38 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Buttun from "../atoms/button";
 import styles from "../../../styles/Coveralbum.module.css";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
+import { useSearch } from "../context/contextalbum";
 
 const CoverAlbum = (CoverAlbumData: any) => {
-  const [stateHeart, setHeart] = useState(false);
+  const { dataResult, state, dispatch } = useSearch();
 
-  const modifyHeart = () => {
-    setHeart(!stateHeart);
-  };
+  // const [nameArtist, setArtistName] = useState(state.search);
+
+  // const addMusic = () => {
+  //   // console.log("salut");
+  //   state.addMusic(stateHeart, nameArtist);
+  // };
+
+  // const [list, setList] = useState(['apple', 'banana', 'orange']);
+
+  // const addItemToList = () => {
+  //   setList([...list, 'pear']);
+  // }
 
   return (
     <>
       <div className={styles.favorites}>
         <div className={styles.favoritesWrapper}>
-          {stateHeart ? (
+          {state.stateHeart ? (
             <>
-              <FavoriteIcon onClick={modifyHeart} />
+              <FavoriteIcon onClick={addMusic} />
               <p>Retirer de ma playlist</p>
             </>
           ) : (
             <>
-              <FavoriteBorderIcon onClick={modifyHeart} />
+              <FavoriteBorderIcon onClick={addMusic} />
               <p>Ajouter à ma playlist</p>
             </>
           )}

@@ -53,8 +53,8 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function SearchAppBar() {
-  // const [word, setWord] = useState("");
-  const { dispatch } = useSearch();
+  const { state, dispatch } = useSearch();
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position='static'>

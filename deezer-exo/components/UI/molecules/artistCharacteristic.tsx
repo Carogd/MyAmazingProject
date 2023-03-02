@@ -1,12 +1,13 @@
 import React from "react";
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
-// import { getServerSideProps } from "../../../pages";
+import { useSearch } from "../context/contextalbum";
 
 // export type ArtistCharacteristicData = {
 //   ArtistCharacteristicData: any;
 // };
 
 const ArtistCharacteristic = (ArtistCharacteristicData: any) => {
+  const { state, dispatch } = useSearch();
   // console.log("ArtistCharacteristic data artist", DataArtist);
   const artistName =
     ArtistCharacteristicData.ArtistCharacteristicData.DataArtist.artist.name;

@@ -21,7 +21,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "pages/api/deezeapi.ts",
+    "pages/api/search.ts",
     "components/UI/molecules/artiste.jsx"
   ],
   "exclude": ["node_modules"]
