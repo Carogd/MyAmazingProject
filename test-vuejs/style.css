@@ -16,6 +16,9 @@
   justify-content: space-around;
   padding: 10px;
 }
+.card .card-footer button {
+  cursor: pointer;
+}
 
 .row {
   display: flex;
