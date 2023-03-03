@@ -36,9 +36,21 @@
                   <p class="carttext">{{post.body}}</p>
                 </div>
                 <div class="card-footer">
-                  <span>Nombre de like : {{post.likes ? post.likes : "0"}}</span>
+                  <span>Nombre de like : {{post.likes ? post.likes : "0"}} like{{post.likes > 1 ? "s" : ""}}</span>
                   <button v-on:click="addLike(post)">Like </button>
                 </div>
+                <div class="comment" >
+                  <form v-on:submit.prevent="(event) => addComment(event,post)">
+                    <input type="text"  >
+                  </form>
+                  <div class="listComments" >
+                    <div class="comment" v-for="comment in post.comments" :key="comment.id">
+                      {{ comment.body }}
+                      <button v-on:click="addLikeComment(comment)">Like the comment </button>
+                    </div>
+                  </div>
+                </div>
+
               </div>
             </div>
           </div>
@@ -51,7 +63,6 @@
         createApp({
           data() {
             return {
-              message: "Hello Vue!",
               postsList: [],
             };
           },
@@ -59,11 +70,34 @@
             addLike(post) {
               if (post.likes) {
                 post.likes++;
-                // console.log('if post.like',post.likes )
               } else {
                 post.likes = 1;
               }
-            }
+            },
+            addComment(event, post) {
+              const { value } = event.target.elements[0];
+
+              const comment = {
+                // in order to hav a key to iterate and to be able to select this comment only if you want to do an action 
+                id : post.comments ? post.comments.length + 1 : 1,
+                body : value,
+                likescomments: 0,
+              }
+
+              if (post.comments) {
+                 post.comments.push(comment)
+              } else {
+                // init
+                post.comments = [comment]
+              }
+            },
+            addLikeComment(comment) {
+              if (comment.likescomments) {
+                comment.likescomments++;
+              } else {
+                comment.likescomments = 1;
+              }
+            },
           },
           mounted() {
             fetch("https://jsonplaceholder.typicode.com/posts")

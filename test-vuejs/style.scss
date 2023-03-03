@@ -18,6 +18,12 @@
       cursor: pointer;
     }
   }
+  .comment {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 10px 5px;
+  }
 }
 
 .row {
