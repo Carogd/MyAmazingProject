@@ -46,7 +46,7 @@
                   <div class="listComments" >
                     <div class="comment" v-for="comment in post.comments" :key="comment.id">
                       {{ comment.body }}
-                      <button v-on:click="addLikeComment(comment)">Like the comment </button>
+                      <div v-on:click="addLikeComment(comment)">{{ comment.likescomments ? comment.likescomments : "Add" }} Like{{comment.likescomments > 1 ? "s" : ""}} </div>
                     </div>
                   </div>
                 </div>
