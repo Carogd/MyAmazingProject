@@ -1,0 +1,44 @@
+import React from "react";
+import heart from "./heart.svg";
+import "./Products.css";
+import { Link } from "react-router-dom";
+import inventory from "../../data/inventory";
+
+function Products() {
+  return (
+    <div className='container-products'>
+      {inventory.map((product) => {
+        return (
+          <Link
+            to={{
+              pathname: `/produits/${product.title.replace(/\s+/g, "").trim()}`,
+            }}
+            key={product.id}
+          >
+            <div className='bloc-card'>
+              <div className='product-card'>
+                <div className='visual-aspect'>
+                  <img
+                    className='img-product'
+                    src={process.env.PUBLIC_URL + `/images/${product.img}.png`}
+                    alt='image produit'
+                  />
+                </div>
+                <div className='like-container'>
+                  <img src={heart} alt='icone j aime' />
+                </div>
+                <div className='info'>
+                  <h2>{product.title}</h2>
+                  <p>Prix : {product.price}</p>
+                </div>
+              </div>
+              <div className='back-card'></div>
+            </div>
+          </Link>
+        );
+      })}
+    </div>
+  );
+}
+
+export default Products;
